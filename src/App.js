@@ -180,7 +180,7 @@ function App() {
     // Caribbean & Americas
     BBD: "https://flagcdn.com/w20/bb.png", BZD: "https://flagcdn.com/w20/bz.png", GYD: "https://flagcdn.com/w20/gy.png", SRD: "https://flagcdn.com/w20/sr.png", HTG: "https://flagcdn.com/w20/ht.png", DOP: "https://flagcdn.com/w20/do.png", CUC: "https://flagcdn.com/w20/cu.png", CUP: "https://flagcdn.com/w20/cu.png", FJD: "https://flagcdn.com/w20/fj.png", PGK: "https://flagcdn.com/w20/pg.png", SBD: "https://flagcdn.com/w20/sb.png", VUV: "https://flagcdn.com/w20/vu.png", WST: "https://flagcdn.com/w20/ws.png", TOP: "https://flagcdn.com/w20/to.png", XPF: "https://flagcdn.com/w20/pf.png", NIO: "https://flagcdn.com/w20/ni.png", HNL: "https://flagcdn.com/w20/hn.png", GTQ: "https://flagcdn.com/w20/gt.png", SVC: "https://flagcdn.com/w20/sv.png", CRC: "https://flagcdn.com/w20/cr.png", PAB: "https://flagcdn.com/w20/pa.png", DZD: "https://flagcdn.com/w20/dz.png", LYD: "https://flagcdn.com/w20/ly.png", SDG: "https://flagcdn.com/w20/sd.png",
     // Oceania
-    KID: "https://flagcdn.com/w20/ki.png", SBD: "https://flagcdn.com/w20/sb.png", VUV: "https://flagcdn.com/w20/vu.png", WST: "https://flagcdn.com/w20/ws.png", TOP: "https://flagcdn.com/w20/to.png", FJD: "https://flagcdn.com/w20/fj.png", PGK: "https://flagcdn.com/w20/pg.png", 
+    KID: "https://flagcdn.com/w20/ki.png", // SBD, VUV, WST, TOP, FJD, PGK already included above, so do not repeat
     // Special units and fallback
     XAU: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Gold_bar_icon.png/20px-Gold_bar_icon.png", // Gold
     XAG: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Silver_bar_icon.png/20px-Silver_bar_icon.png", // Silver
@@ -189,7 +189,6 @@ function App() {
     // Fallback for unknowns
     XX: "https://flagcdn.com/w20/un.png"
   };
-  const defaultFlag = "https://flagcdn.com/w20/un.png";
 
   // Fetch currency symbols with fallback
   useEffect(() => {
