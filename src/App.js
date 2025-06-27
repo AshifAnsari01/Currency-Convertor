@@ -145,7 +145,7 @@ function App() {
 
   // Flag mapping for dropdowns - using flag images from CDN
   const currencyToFlag = {
-    // Major currencies
+    // Major and minor world currencies
     USD: "https://flagcdn.com/w20/us.png", EUR: "https://flagcdn.com/w20/eu.png", GBP: "https://flagcdn.com/w20/gb.png", 
     JPY: "https://flagcdn.com/w20/jp.png", AUD: "https://flagcdn.com/w20/au.png", CAD: "https://flagcdn.com/w20/ca.png", 
     CHF: "https://flagcdn.com/w20/ch.png", CNY: "https://flagcdn.com/w20/cn.png", INR: "https://flagcdn.com/w20/in.png", 
@@ -168,8 +168,28 @@ function App() {
     HRK: "https://flagcdn.com/w20/hr.png", RSD: "https://flagcdn.com/w20/rs.png", ALL: "https://flagcdn.com/w20/al.png", 
     MKD: "https://flagcdn.com/w20/mk.png", MDL: "https://flagcdn.com/w20/md.png", GEL: "https://flagcdn.com/w20/ge.png",
     AMD: "https://flagcdn.com/w20/am.png", AZN: "https://flagcdn.com/w20/az.png", BYN: "https://flagcdn.com/w20/by.png", 
-    MNT: "https://flagcdn.com/w20/mn.png"
+    MNT: "https://flagcdn.com/w20/mn.png",
+    // Africa
+    XOF: "https://flagcdn.com/w20/bf.png", XAF: "https://flagcdn.com/w20/cm.png", GMD: "https://flagcdn.com/w20/gm.png", SLL: "https://flagcdn.com/w20/sl.png", LRD: "https://flagcdn.com/w20/lr.png", GNF: "https://flagcdn.com/w20/gn.png", BIF: "https://flagcdn.com/w20/bi.png", RWF: "https://flagcdn.com/w20/rw.png", SOS: "https://flagcdn.com/w20/so.png", DJF: "https://flagcdn.com/w20/dj.png", KMF: "https://flagcdn.com/w20/km.png", MUR: "https://flagcdn.com/w20/mu.png", SCR: "https://flagcdn.com/w20/sc.png", MGA: "https://flagcdn.com/w20/mg.png", BWP: "https://flagcdn.com/w20/bw.png", NAD: "https://flagcdn.com/w20/na.png", LSL: "https://flagcdn.com/w20/ls.png", SZL: "https://flagcdn.com/w20/sz.png", ZMW: "https://flagcdn.com/w20/zm.png", MWK: "https://flagcdn.com/w20/mw.png", MZN: "https://flagcdn.com/w20/mz.png", ZWL: "https://flagcdn.com/w20/zw.png",
+    // Middle East & Central Asia
+    IRR: "https://flagcdn.com/w20/ir.png", IQD: "https://flagcdn.com/w20/iq.png", JOD: "https://flagcdn.com/w20/jo.png", LBP: "https://flagcdn.com/w20/lb.png", SYP: "https://flagcdn.com/w20/sy.png", AFN: "https://flagcdn.com/w20/af.png", KZT: "https://flagcdn.com/w20/kz.png", UZS: "https://flagcdn.com/w20/uz.png", KGS: "https://flagcdn.com/w20/kg.png", TJS: "https://flagcdn.com/w20/tj.png", TMT: "https://flagcdn.com/w20/tm.png",
+    // South Asia
+    BTN: "https://flagcdn.com/w20/bt.png", MVR: "https://flagcdn.com/w20/mv.png",
+    // Southeast Asia
+    MMK: "https://flagcdn.com/w20/mm.png", LAK: "https://flagcdn.com/w20/la.png", KHR: "https://flagcdn.com/w20/kh.png", MOP: "https://flagcdn.com/w20/mo.png",
+    // Caribbean & Americas
+    BBD: "https://flagcdn.com/w20/bb.png", BZD: "https://flagcdn.com/w20/bz.png", GYD: "https://flagcdn.com/w20/gy.png", SRD: "https://flagcdn.com/w20/sr.png", HTG: "https://flagcdn.com/w20/ht.png", DOP: "https://flagcdn.com/w20/do.png", CUC: "https://flagcdn.com/w20/cu.png", CUP: "https://flagcdn.com/w20/cu.png", FJD: "https://flagcdn.com/w20/fj.png", PGK: "https://flagcdn.com/w20/pg.png", SBD: "https://flagcdn.com/w20/sb.png", VUV: "https://flagcdn.com/w20/vu.png", WST: "https://flagcdn.com/w20/ws.png", TOP: "https://flagcdn.com/w20/to.png", XPF: "https://flagcdn.com/w20/pf.png", NIO: "https://flagcdn.com/w20/ni.png", HNL: "https://flagcdn.com/w20/hn.png", GTQ: "https://flagcdn.com/w20/gt.png", SVC: "https://flagcdn.com/w20/sv.png", CRC: "https://flagcdn.com/w20/cr.png", PAB: "https://flagcdn.com/w20/pa.png", DZD: "https://flagcdn.com/w20/dz.png", LYD: "https://flagcdn.com/w20/ly.png", SDG: "https://flagcdn.com/w20/sd.png",
+    // Oceania
+    KID: "https://flagcdn.com/w20/ki.png", SBD: "https://flagcdn.com/w20/sb.png", VUV: "https://flagcdn.com/w20/vu.png", WST: "https://flagcdn.com/w20/ws.png", TOP: "https://flagcdn.com/w20/to.png", FJD: "https://flagcdn.com/w20/fj.png", PGK: "https://flagcdn.com/w20/pg.png", 
+    // Special units and fallback
+    XAU: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Gold_bar_icon.png/20px-Gold_bar_icon.png", // Gold
+    XAG: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Silver_bar_icon.png/20px-Silver_bar_icon.png", // Silver
+    XPT: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Platinum_icon.png/20px-Platinum_icon.png", // Platinum
+    XPD: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Platinum_icon.png/20px-Platinum_icon.png", // Palladium (same as platinum)
+    // Fallback for unknowns
+    XX: "https://flagcdn.com/w20/un.png"
   };
+  const defaultFlag = "https://flagcdn.com/w20/un.png";
 
   // Fetch currency symbols with fallback
   useEffect(() => {
