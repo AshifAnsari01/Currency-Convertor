@@ -182,25 +182,6 @@ If you have any questions or need help:
 - Open an issue on GitHub
 - Contact: your-email@example.com
 
-## Backend Proxy Server Setup
-
-**Note: The backend proxy is no longer needed!** 
-
-ExchangeRate-API.com has excellent CORS support, so the frontend can call it directly. The `server.js` file is included for reference but not required.
-
-If you want to use the proxy approach:
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-2. **Start the proxy server:**
-   ```bash
-   node server.js
-   ```
-3. **Update frontend API URLs back to `/api/...` endpoints**
-
-For most deployments, the direct API approach is simpler and recommended.
-
 ---
 
 **Made with ❤️ by [Your Name]**
