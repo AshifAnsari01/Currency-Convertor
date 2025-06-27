@@ -143,25 +143,32 @@ function App() {
     testAPI();
   }, []);
 
-  // Flag mapping for dropdowns - expanded comprehensive list
+  // Flag mapping for dropdowns - using flag images from CDN
   const currencyToFlag = {
     // Major currencies
-    USD: "🇺🇸", EUR: "🇪🇺", GBP: "🇬🇧", JPY: "🇯🇵", AUD: "🇦🇺", CAD: "🇨🇦", CHF: "🇨🇭", CNY: "🇨🇳", INR: "🇮🇳", BRL: "🇧🇷",
-    MXN: "🇲🇽", SGD: "🇸🇬", HKD: "🇭🇰", KRW: "🇰🇷", THB: "🇹🇭", NZD: "🇳🇿", SEK: "🇸🇪", NOK: "🇳🇴", DKK: "🇩🇰", PLN: "🇵🇱",
-    CZK: "🇨🇿", HUF: "🇭🇺", RUB: "🇷🇺", TRY: "🇹🇷", ZAR: "🇿🇦", EGP: "🇪🇬", MAD: "🇲🇦", TND: "🇹🇳", NGN: "🇳🇬", GHS: "🇬🇭",
-    KES: "🇰🇪", TZS: "🇹🇿", UGX: "🇺🇬", ETB: "🇪🇹", ILS: "🇮🇱", AED: "🇦🇪", SAR: "🇸🇦", QAR: "🇶🇦", KWD: "🇰🇼", BHD: "🇧🇭",
-    OMR: "🇴🇲", JOD: "🇯🇴", LBP: "🇱🇧", SYP: "🇸🇾", IQD: "🇮🇶", IRR: "🇮🇷", PKR: "🇵🇰", BDT: "🇧🇩", LKR: "🇱🇰", NPR: "🇳🇵",
-    BTN: "🇧🇹", MVR: "🇲🇻", AFN: "🇦🇫", KZT: "🇰🇿", UZS: "🇺🇿", KGS: "🇰🇬", TJS: "🇹🇯", TMT: "🇹🇲", ARS: "🇦🇷", CLP: "🇨🇱",
-    COP: "🇨🇴", PEN: "🇵🇪", UYU: "🇺🇾", VEF: "🇻🇪", JMD: "🇯🇲", TTD: "🇹🇹", BBD: "🇧🇧", BZD: "🇧🇿", GYD: "🇬🇾", SRD: "🇸🇷",
-    HTG: "🇭🇹", DOP: "🇩🇴", CUC: "🇨🇺", CUP: "🇨🇺", FJD: "🇫🇯", PGK: "🇵🇬", SBD: "🇸🇧", VUV: "🇻🇺", WST: "🇼🇸", TOP: "🇹🇴",
-    XPF: "🇵🇫", NIO: "🇳🇮", HNL: "🇭🇳", GTQ: "🇬🇹", SVC: "🇸🇻", CRC: "🇨🇷", PAB: "🇵🇦", DZD: "🇩🇿", LYD: "🇱🇾", SDG: "🇸🇩",
-    XOF: "🇧🇫", XAF: "🇨🇲", GMD: "🇬🇲", SLL: "🇸🇱", LRD: "🇱🇷", GNF: "🇬🇳", BIF: "🇧🇮", RWF: "🇷🇼", SOS: "🇸🇴", DJF: "🇩🇯",
-    KMF: "🇰🇲", MUR: "🇲🇺", SCR: "🇸🇨", MGA: "🇲🇬", BWP: "🇧🇼", NAD: "🇳🇦", LSL: "🇱🇸", SZL: "🇸🇿", ZMW: "🇿🇲", MWK: "🇲🇼",
-    MZN: "🇲🇿", ZWL: "🇿🇼", MMK: "🇲🇲", LAK: "🇱🇦", KHR: "🇰🇭", MOP: "🇲🇴", MYR: "🇲🇾", IDR: "🇮🇩", PHP: "🇵🇭", VND: "🇻🇳",
-    TWD: "🇹🇼", RON: "🇷🇴", BGN: "🇧🇬", HRK: "🇭🇷", RSD: "🇷🇸", ALL: "🇦🇱", MKD: "🇲🇰", MDL: "🇲🇩", GEL: "🇬🇪",
-    AMD: "🇦🇲", AZN: "🇦🇿", BYN: "🇧🇾", MNT: "🇲🇳",
-    // Precious metals
-    XAU: "🥇", XAG: "🥈", XPT: "🥉", XPD: "🔶"
+    USD: "https://flagcdn.com/w20/us.png", EUR: "https://flagcdn.com/w20/eu.png", GBP: "https://flagcdn.com/w20/gb.png", 
+    JPY: "https://flagcdn.com/w20/jp.png", AUD: "https://flagcdn.com/w20/au.png", CAD: "https://flagcdn.com/w20/ca.png", 
+    CHF: "https://flagcdn.com/w20/ch.png", CNY: "https://flagcdn.com/w20/cn.png", INR: "https://flagcdn.com/w20/in.png", 
+    BRL: "https://flagcdn.com/w20/br.png", MXN: "https://flagcdn.com/w20/mx.png", SGD: "https://flagcdn.com/w20/sg.png", 
+    HKD: "https://flagcdn.com/w20/hk.png", KRW: "https://flagcdn.com/w20/kr.png", THB: "https://flagcdn.com/w20/th.png", 
+    NZD: "https://flagcdn.com/w20/nz.png", SEK: "https://flagcdn.com/w20/se.png", NOK: "https://flagcdn.com/w20/no.png", 
+    DKK: "https://flagcdn.com/w20/dk.png", PLN: "https://flagcdn.com/w20/pl.png", CZK: "https://flagcdn.com/w20/cz.png", 
+    HUF: "https://flagcdn.com/w20/hu.png", RUB: "https://flagcdn.com/w20/ru.png", TRY: "https://flagcdn.com/w20/tr.png", 
+    ZAR: "https://flagcdn.com/w20/za.png", EGP: "https://flagcdn.com/w20/eg.png", MAD: "https://flagcdn.com/w20/ma.png", 
+    TND: "https://flagcdn.com/w20/tn.png", NGN: "https://flagcdn.com/w20/ng.png", GHS: "https://flagcdn.com/w20/gh.png",
+    KES: "https://flagcdn.com/w20/ke.png", TZS: "https://flagcdn.com/w20/tz.png", UGX: "https://flagcdn.com/w20/ug.png", 
+    ETB: "https://flagcdn.com/w20/et.png", ILS: "https://flagcdn.com/w20/il.png", AED: "https://flagcdn.com/w20/ae.png", 
+    SAR: "https://flagcdn.com/w20/sa.png", QAR: "https://flagcdn.com/w20/qa.png", KWD: "https://flagcdn.com/w20/kw.png", 
+    BHD: "https://flagcdn.com/w20/bh.png", PKR: "https://flagcdn.com/w20/pk.png", BDT: "https://flagcdn.com/w20/bd.png", 
+    LKR: "https://flagcdn.com/w20/lk.png", NPR: "https://flagcdn.com/w20/np.png", ARS: "https://flagcdn.com/w20/ar.png", 
+    CLP: "https://flagcdn.com/w20/cl.png", COP: "https://flagcdn.com/w20/co.png", PEN: "https://flagcdn.com/w20/pe.png", 
+    UYU: "https://flagcdn.com/w20/uy.png", JMD: "https://flagcdn.com/w20/jm.png", MYR: "https://flagcdn.com/w20/my.png", 
+    IDR: "https://flagcdn.com/w20/id.png", PHP: "https://flagcdn.com/w20/ph.png", VND: "https://flagcdn.com/w20/vn.png",
+    TWD: "https://flagcdn.com/w20/tw.png", RON: "https://flagcdn.com/w20/ro.png", BGN: "https://flagcdn.com/w20/bg.png", 
+    HRK: "https://flagcdn.com/w20/hr.png", RSD: "https://flagcdn.com/w20/rs.png", ALL: "https://flagcdn.com/w20/al.png", 
+    MKD: "https://flagcdn.com/w20/mk.png", MDL: "https://flagcdn.com/w20/md.png", GEL: "https://flagcdn.com/w20/ge.png",
+    AMD: "https://flagcdn.com/w20/am.png", AZN: "https://flagcdn.com/w20/az.png", BYN: "https://flagcdn.com/w20/by.png", 
+    MNT: "https://flagcdn.com/w20/mn.png"
   };
 
   // Fetch currency symbols with fallback
@@ -332,13 +339,26 @@ function App() {
 
   // Prepare options for react-select
   const currencyOptions = currencies.map((cur) => {
-    const flag = currencyToFlag[cur] || "🌍";
-    console.log(`Currency: ${cur}, Flag: ${flag}`); // Debug log
+    const flagUrl = currencyToFlag[cur];
+    console.log(`Currency: ${cur}, Flag URL: ${flagUrl}`); // Debug log
     return {
       value: cur,
       label: (
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "1.2em" }}>{flag}</span>
+          {flagUrl ? (
+            <img 
+              src={flagUrl} 
+              alt={`${cur} flag`} 
+              style={{ 
+                width: "20px", 
+                height: "15px", 
+                objectFit: "cover",
+                borderRadius: "2px"
+              }} 
+            />
+          ) : (
+            <span style={{ fontSize: "1.2em" }}>🌍</span>
+          )}
           <span>{cur}</span>
         </div>
       ),
@@ -362,7 +382,17 @@ function App() {
         borderRadius: '8px',
         fontSize: '1.2em'
       }}>
-        <strong>Flag Test:</strong> 🇺🇸 USD 🇪🇺 EUR 🇬🇧 GBP 🇯🇵 JPY 🇮🇳 INR
+        <strong>Flag Test:</strong> 
+        <img src="https://flagcdn.com/w20/us.png" alt="US" style={{ width: "20px", height: "15px", margin: "0 5px" }} />
+        USD 
+        <img src="https://flagcdn.com/w20/eu.png" alt="EU" style={{ width: "20px", height: "15px", margin: "0 5px" }} />
+        EUR 
+        <img src="https://flagcdn.com/w20/gb.png" alt="GB" style={{ width: "20px", height: "15px", margin: "0 5px" }} />
+        GBP 
+        <img src="https://flagcdn.com/w20/jp.png" alt="JP" style={{ width: "20px", height: "15px", margin: "0 5px" }} />
+        JPY 
+        <img src="https://flagcdn.com/w20/in.png" alt="IN" style={{ width: "20px", height: "15px", margin: "0 5px" }} />
+        INR
       </div>
 
       {error && <div className="error-message">{error}</div>}
@@ -468,7 +498,20 @@ function App() {
                 {multiCurrencyData.slice(0, 10).map((item) => (
                   <tr key={item.currency}>
                     <td>
-                      <span>{currencyToFlag[item.currency] || "🌍"}</span>
+                      {currencyToFlag[item.currency] ? (
+                        <img 
+                          src={currencyToFlag[item.currency]} 
+                          alt={`${item.currency} flag`} 
+                          style={{ 
+                            width: "20px", 
+                            height: "15px", 
+                            objectFit: "cover",
+                            borderRadius: "2px"
+                          }} 
+                        />
+                      ) : (
+                        <span style={{ fontSize: "1.2em" }}>🌍</span>
+                      )}
                     </td>
                     <td>{item.currency}</td>
                     <td>{item.rate.toFixed(4)}</td>
