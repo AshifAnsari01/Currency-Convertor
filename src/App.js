@@ -340,7 +340,6 @@ function App() {
   // Prepare options for react-select
   const currencyOptions = currencies.map((cur) => {
     const flagUrl = currencyToFlag[cur];
-    console.log(`Currency: ${cur}, Flag URL: ${flagUrl}`); // Debug log
     return {
       value: cur,
       label: (
@@ -372,27 +371,6 @@ function App() {
         <button className="theme-toggle" onClick={toggleDarkMode}>
           {darkMode ? "☀️" : "🌙"}
         </button>
-      </div>
-
-      {/* Flag test display */}
-      <div style={{ 
-        background: '#f0f0f0', 
-        padding: '10px', 
-        margin: '10px 0', 
-        borderRadius: '8px',
-        fontSize: '1.2em'
-      }}>
-        <strong>Flag Test:</strong> 
-        <img src="https://flagcdn.com/w20/us.png" alt="US" style={{ width: "20px", height: "15px", margin: "0 5px" }} />
-        USD 
-        <img src="https://flagcdn.com/w20/eu.png" alt="EU" style={{ width: "20px", height: "15px", margin: "0 5px" }} />
-        EUR 
-        <img src="https://flagcdn.com/w20/gb.png" alt="GB" style={{ width: "20px", height: "15px", margin: "0 5px" }} />
-        GBP 
-        <img src="https://flagcdn.com/w20/jp.png" alt="JP" style={{ width: "20px", height: "15px", margin: "0 5px" }} />
-        JPY 
-        <img src="https://flagcdn.com/w20/in.png" alt="IN" style={{ width: "20px", height: "15px", margin: "0 5px" }} />
-        INR
       </div>
 
       {error && <div className="error-message">{error}</div>}
