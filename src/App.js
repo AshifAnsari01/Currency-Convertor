@@ -130,7 +130,7 @@ function App() {
     const testAPI = async () => {
       try {
         console.log("Testing API connection...");
-        const testRes = await fetch("/api/latest?base=USD&symbols=EUR");
+        const testRes = await fetch("https://api.exchangerate-api.com/v4/latest/USD");
         console.log("Test API status:", testRes.status);
         if (testRes.ok) {
           const testData = await testRes.json();
@@ -140,7 +140,6 @@ function App() {
         console.error("API test failed:", error);
       }
     };
-    
     testAPI();
   }, []);
 
@@ -152,9 +151,15 @@ function App() {
 
   // Fetch currency symbols with fallback
   useEffect(() => {
-    fetch("/api/symbols")
+    fetch("https://api.exchangerate-api.com/v4/latest/USD")
       .then((res) => res.json())
-      .then((data) => setCurrencies(Object.keys(data.symbols)))
+      .then((data) => {
+        if (data && data.rates) {
+          setCurrencies(Object.keys(data.rates));
+        } else {
+          setCurrencies(["USD", "INR", "EUR", "GBP", "JPY"]);
+        }
+      })
       .catch(() => {
         // Fallback: minimal but functional list
         setCurrencies(["USD", "INR", "EUR", "GBP", "JPY"]);
@@ -164,33 +169,26 @@ function App() {
   // Fetch chart data
   const fetchChartData = useCallback(async () => {
     try {
-      const endDate = new Date().toISOString().split("T")[0];
-      const startDate = new Date(Date.now() - 6 * 24 * 60 * 60 * 1000)
-        .toISOString()
-        .split("T")[0];
-      const res = await fetch(
-        `/api/timeseries?start_date=${startDate}&end_date=${endDate}&base=${fromCurrency}&symbols=${toCurrency}`,
-        {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-          }
-        }
-      );
+      const res = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
       const data = await res.json();
-      if (!data || !data.rates || typeof data.rates !== 'object') {
+      if (!data || !data.rates) {
         throw new Error('Invalid chart data response');
       }
-      const chartArray = Object.entries(data.rates)
-        .filter(([date, value]) => value && value[toCurrency] && !isNaN(value[toCurrency]))
-        .map(([date, value]) => ({
-          date: new Date(date).toLocaleDateString(),
-          rate: parseFloat(value[toCurrency]).toFixed(4),
-        }));
-      setChartData(chartArray);
+      
+      // Create a simple chart with current rate (since this API doesn't have historical data)
+      const currentRate = data.rates[toCurrency];
+      if (currentRate) {
+        const chartArray = [{
+          date: new Date().toLocaleDateString(),
+          rate: parseFloat(currentRate).toFixed(4),
+        }];
+        setChartData(chartArray);
+      } else {
+        setChartData([]);
+      }
     } catch (error) {
       setChartData([]);
     }
@@ -199,12 +197,7 @@ function App() {
   // Fetch multi-currency data
   const fetchMultiCurrencyData = useCallback(async () => {
     try {
-      const res = await fetch(`/api/latest?base=${fromCurrency}&symbols=USD,EUR,GBP,JPY,AUD,CAD,CHF,CNY,INR,BRL`, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-        }
-      });
+      const res = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
@@ -241,21 +234,14 @@ function App() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(
-        `/api/convert?from=${fromCurrency}&to=${toCurrency}&amount=${amount}`,
-        {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-          }
-        }
-      );
+      const res = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
       if (res.ok) {
         const data = await res.json();
-        if (!data || typeof data.result !== 'number' || isNaN(data.result)) {
+        if (!data || !data.rates || !data.rates[toCurrency]) {
           throw new Error('Invalid response from API');
         }
-        const converted = parseFloat(data.result).toFixed(2);
+        const rate = data.rates[toCurrency];
+        const converted = (amount * rate).toFixed(2);
         if (isNaN(converted) || converted === 'NaN') {
           throw new Error('Invalid conversion result');
         }

@@ -44,7 +44,7 @@ A feature-rich, modern currency converter built with React that supports real-ti
 - **Styling**: CSS3 with CSS Variables
 - **Charts**: Recharts
 - **Dropdowns**: React Select
-- **API**: ExchangeRate-API.com (via backend proxy)
+- **API**: ExchangeRate-API.com (direct calls)
 - **Deployment**: Vercel/Netlify ready
 
 ## 📦 Installation
@@ -94,7 +94,7 @@ npm run deploy
 ## 📱 Features in Detail
 
 ### 1. Real-time Currency Conversion
-- Fetches live rates from ExchangeRate-API.com via a backend proxy
+- Fetches live rates from ExchangeRate-API.com directly
 - Supports 160+ world currencies
 - Instant conversion with real-time updates
 
@@ -150,14 +150,12 @@ Modify CSS variables in `src/index.css`:
 ```
 
 ### API Configuration
-The app uses ExchangeRate-API.com via a backend proxy. The proxy handles CORS and provides a consistent interface.
+The app uses ExchangeRate-API.com directly. This API has excellent CORS support and doesn't require authentication for basic usage.
 
 ## 📊 API Endpoints Used
 
-- `/api/symbols` - Get all currencies (via proxy)
-- `/api/convert` - Convert currencies (via proxy)
-- `/api/timeseries` - Historical data (via proxy)
-- `/api/latest` - Latest rates (via proxy)
+- `https://api.exchangerate-api.com/v4/latest/{base}` - Get latest rates for a base currency
+- Direct API calls with no proxy needed
 
 ## 🤝 Contributing
 
@@ -186,8 +184,11 @@ If you have any questions or need help:
 
 ## Backend Proxy Server Setup
 
-To avoid CORS and network issues with the ExchangeRate-API.com API, run the included backend proxy server:
+**Note: The backend proxy is no longer needed!** 
 
+ExchangeRate-API.com has excellent CORS support, so the frontend can call it directly. The `server.js` file is included for reference but not required.
+
+If you want to use the proxy approach:
 1. **Install dependencies:**
    ```bash
    npm install
@@ -196,14 +197,9 @@ To avoid CORS and network issues with the ExchangeRate-API.com API, run the incl
    ```bash
    node server.js
    ```
-   The proxy will run on `http://localhost:5000` by default.
+3. **Update frontend API URLs back to `/api/...` endpoints**
 
-3. **Update frontend API URLs:**
-   - The frontend already uses `/api/...` endpoints (e.g., `/api/latest`, `/api/timeseries`, `/api/symbols`).
-   - This routes requests through the proxy, bypassing CORS issues.
-
-4. **Deploying:**
-   - For production, deploy both the frontend and backend together, or use a service like Heroku, Render, or Vercel for the backend proxy.
+For most deployments, the direct API approach is simpler and recommended.
 
 ---
 
