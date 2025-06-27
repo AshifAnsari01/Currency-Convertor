@@ -157,7 +157,7 @@ function App() {
     XPF: "🇵🇫", NIO: "🇳🇮", HNL: "🇭🇳", GTQ: "🇬🇹", SVC: "🇸🇻", CRC: "🇨🇷", PAB: "🇵🇦", DZD: "🇩🇿", LYD: "🇱🇾", SDG: "🇸🇩",
     XOF: "🇧🇫", XAF: "🇨🇲", GMD: "🇬🇲", SLL: "🇸🇱", LRD: "🇱🇷", GNF: "🇬🇳", BIF: "🇧🇮", RWF: "🇷🇼", SOS: "🇸🇴", DJF: "🇩🇯",
     KMF: "🇰🇲", MUR: "🇲🇺", SCR: "🇸🇨", MGA: "🇲🇬", BWP: "🇧🇼", NAD: "🇳🇦", LSL: "🇱🇸", SZL: "🇸🇿", ZMW: "🇿🇲", MWK: "🇲🇼",
-    MZN: "🇲🇿", ZWL: "🇿🇼", MMK: "🇲🇲", LAK: "🇱🇦", KHR: "🇰🇭", MOP: "🇲🇴", MYR: "🇲🇾", IDR: "🇮🇩", PHP: "🇵🇭", VND: "🇻��",
+    MZN: "🇲🇿", ZWL: "🇿🇼", MMK: "🇲🇲", LAK: "🇱🇦", KHR: "🇰🇭", MOP: "🇲🇴", MYR: "🇲🇾", IDR: "🇮🇩", PHP: "🇵🇭", VND: "🇻🇳",
     TWD: "🇹🇼", RON: "🇷🇴", BGN: "🇧🇬", HRK: "🇭🇷", RSD: "🇷🇸", ALL: "🇦🇱", MKD: "🇲🇰", MDL: "🇲🇩", GEL: "🇬🇪",
     AMD: "🇦🇲", AZN: "🇦🇿", BYN: "🇧🇾", MNT: "🇲🇳",
     // Precious metals
@@ -331,15 +331,19 @@ function App() {
   };
 
   // Prepare options for react-select
-  const currencyOptions = currencies.map((cur) => ({
-    value: cur,
-    label: (
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <span>{currencyToFlag[cur] || "🌍"}</span>
-        <span>{cur}</span>
-      </div>
-    ),
-  }));
+  const currencyOptions = currencies.map((cur) => {
+    const flag = currencyToFlag[cur] || "🌍";
+    console.log(`Currency: ${cur}, Flag: ${flag}`); // Debug log
+    return {
+      value: cur,
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <span style={{ fontSize: "1.2em" }}>{flag}</span>
+          <span>{cur}</span>
+        </div>
+      ),
+    };
+  });
 
   return (
     <div className={`container ${darkMode ? "dark" : ""}`}>
@@ -348,6 +352,17 @@ function App() {
         <button className="theme-toggle" onClick={toggleDarkMode}>
           {darkMode ? "☀️" : "🌙"}
         </button>
+      </div>
+
+      {/* Flag test display */}
+      <div style={{ 
+        background: '#f0f0f0', 
+        padding: '10px', 
+        margin: '10px 0', 
+        borderRadius: '8px',
+        fontSize: '1.2em'
+      }}>
+        <strong>Flag Test:</strong> 🇺🇸 USD 🇪🇺 EUR 🇬🇧 GBP 🇯🇵 JPY 🇮🇳 INR
       </div>
 
       {error && <div className="error-message">{error}</div>}

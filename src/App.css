@@ -121,7 +121,8 @@
 
 /* React Select Custom Styles */
 .currency-select .css-1s2u09g-control,
-.currency-select .css-1pahdxg-control {
+.currency-select .css-1pahdxg-control,
+.currency-select .css-t3ipsp-control {
   border-radius: 12px !important;
   min-height: 50px !important;
   border: 2px solid var(--border-light) !important;
@@ -130,31 +131,40 @@
 }
 
 .container.dark .currency-select .css-1s2u09g-control,
-.container.dark .currency-select .css-1pahdxg-control {
+.container.dark .currency-select .css-1pahdxg-control,
+.container.dark .currency-select .css-t3ipsp-control {
   border-color: var(--border-dark) !important;
   background: var(--card-dark) !important;
 }
 
 .currency-select .css-1s2u09g-control:hover,
-.currency-select .css-1pahdxg-control:hover {
+.currency-select .css-1pahdxg-control:hover,
+.currency-select .css-t3ipsp-control:hover {
   border-color: var(--primary-color) !important;
 }
 
 .currency-select .css-1s2u09g-control--is-focused,
-.currency-select .css-1pahdxg-control--is-focused {
+.currency-select .css-1pahdxg-control--is-focused,
+.currency-select .css-t3ipsp-control--is-focused {
   border-color: var(--primary-color) !important;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1) !important;
 }
 
-.currency-select .css-1dimb5e-singleValue {
+.currency-select .css-1dimb5e-singleValue,
+.currency-select .css-qc6sy-singleValue {
   color: var(--text-light) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
 }
 
-.container.dark .currency-select .css-1dimb5e-singleValue {
+.container.dark .currency-select .css-1dimb5e-singleValue,
+.container.dark .currency-select .css-qc6sy-singleValue {
   color: var(--text-dark) !important;
 }
 
-.currency-select .css-1fdsijx-ValueContainer {
+.currency-select .css-1fdsijx-ValueContainer,
+.currency-select .css-1jqq78o-ValueContainer {
   padding: 8px 12px !important;
 }
 
@@ -163,26 +173,23 @@
 }
 
 /* Flag styles for dropdown options */
-.currency-select .css-1n7v3ny-option {
+.currency-select .css-1n7v3ny-option,
+.currency-select .css-tr4s61-option {
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
   padding: 8px 12px !important;
 }
 
-.currency-select .css-1n7v3ny-option span:first-child {
+.currency-select .css-1n7v3ny-option span:first-child,
+.currency-select .css-tr4s61-option span:first-child {
   font-size: 1.2em !important;
   margin-right: 8px !important;
 }
 
 /* Flag styles for selected value */
-.currency-select .css-1dimb5e-singleValue {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-
-.currency-select .css-1dimb5e-singleValue span:first-child {
+.currency-select .css-1dimb5e-singleValue span:first-child,
+.currency-select .css-qc6sy-singleValue span:first-child {
   font-size: 1.2em !important;
 }
 
