@@ -130,7 +130,7 @@ function App() {
     const testAPI = async () => {
       try {
         console.log("Testing API connection...");
-        const testRes = await fetch("https://api.exchangerate.host/latest?base=USD&symbols=EUR");
+        const testRes = await fetch("/api/latest?base=USD&symbols=EUR");
         console.log("Test API status:", testRes.status);
         if (testRes.ok) {
           const testData = await testRes.json();
@@ -144,45 +144,21 @@ function App() {
     testAPI();
   }, []);
 
-  // Fetch currency symbols
+  // Flag mapping for dropdowns
+  const currencyToFlag = {
+    USD: "🇺🇸", INR: "🇮🇳", EUR: "🇪🇺", GBP: "🇬🇧", JPY: "🇯🇵"
+    // Add more as needed
+  };
+
+  // Fetch currency symbols with fallback
   useEffect(() => {
-    const fetchCurrencies = async () => {
-      try {
-        const res = await fetch("https://api.exchangerate.host/symbols", {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-          }
-        });
-        if (res.ok) {
-          const data = await res.json();
-          if (data && data.symbols) {
-            const symbols = Object.keys(data.symbols);
-            setCurrencies(symbols);
-            setError("");
-          } else {
-            throw new Error('Invalid response format - no symbols found');
-          }
-        } else {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-      } catch (error) {
-        // Fallback list
-        const comprehensiveCurrencies = [
-          "USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY", "INR", "BRL", "MXN", "SGD", "HKD", "KRW", "THB", 
-          "NZD", "SEK", "NOK", "DKK", "PLN", "CZK", "HUF", "RUB", "TRY", "ZAR", "EGP", "MAD", "TND", "NGN", "GHS", 
-          "KES", "TZS", "UGX", "ETB", "ILS", "AED", "SAR", "QAR", "KWD", "BHD", "OMR", "JOD", "LBP", "SYP", "IQD", 
-          "IRR", "PKR", "BDT", "LKR", "NPR", "BTN", "MVR", "AFN", "KZT", "UZS", "KGS", "TJS", "TMT", "ARS", "CLP", 
-          "COP", "PEN", "UYU", "VEF", "JMD", "TTD", "BBD", "BZD", "GYD", "SRD", "HTG", "DOP", "CUC", "CUP", "FJD", 
-          "PGK", "SBD", "VUV", "WST", "TOP", "XPF", "NIO", "HNL", "GTQ", "SVC", "CRC", "PAB", "DZD", "LYD", "SDG", 
-          "XOF", "XAF", "GMD", "SLL", "LRD", "GNF", "BIF", "RWF", "SOS", "DJF", "KMF", "MUR", "SCR", "MGA", "BWP", 
-          "NAD", "LSL", "SZL", "ZMW", "MWK", "MZN", "ZWL", "MMK", "LAK", "KHR", "MOP", "XAU", "XAG", "XPT", "XPD"
-        ];
-        setCurrencies(comprehensiveCurrencies);
-        setError("⚠️ Using comprehensive currency list (API unavailable)");
-      }
-    };
-    fetchCurrencies();
+    fetch("/api/symbols")
+      .then((res) => res.json())
+      .then((data) => setCurrencies(Object.keys(data.symbols)))
+      .catch(() => {
+        // Fallback: minimal but functional list
+        setCurrencies(["USD", "INR", "EUR", "GBP", "JPY"]);
+      });
   }, []);
 
   // Fetch chart data
@@ -193,7 +169,7 @@ function App() {
         .toISOString()
         .split("T")[0];
       const res = await fetch(
-        `https://api.exchangerate.host/timeseries?start_date=${startDate}&end_date=${endDate}&base=${fromCurrency}&symbols=${toCurrency}`,
+        `/api/timeseries?start_date=${startDate}&end_date=${endDate}&base=${fromCurrency}&symbols=${toCurrency}`,
         {
           method: 'GET',
           headers: {
@@ -223,7 +199,7 @@ function App() {
   // Fetch multi-currency data
   const fetchMultiCurrencyData = useCallback(async () => {
     try {
-      const res = await fetch(`https://api.exchangerate.host/latest?base=${fromCurrency}&symbols=USD,EUR,GBP,JPY,AUD,CAD,CHF,CNY,INR,BRL`, {
+      const res = await fetch(`/api/latest?base=${fromCurrency}&symbols=USD,EUR,GBP,JPY,AUD,CAD,CHF,CNY,INR,BRL`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -266,7 +242,7 @@ function App() {
     setError("");
     try {
       const res = await fetch(
-        `https://api.exchangerate.host/convert?from=${fromCurrency}&to=${toCurrency}&amount=${amount}`,
+        `/api/convert?from=${fromCurrency}&to=${toCurrency}&amount=${amount}`,
         {
           method: 'GET',
           headers: {
@@ -346,12 +322,8 @@ function App() {
     value: cur,
     label: (
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        {currencyToCountry[cur] && (
-          <img
-            src={`https://flagsapi.com/${currencyToCountry[cur]}/flat/24.png`}
-            alt=""
-            style={{ width: 20, height: 15, objectFit: "cover" }}
-          />
+        {currencyToFlag[cur] && (
+          <span>{currencyToFlag[cur]}</span>
         )}
         <span>{cur}</span>
       </div>
@@ -470,11 +442,9 @@ function App() {
                 {multiCurrencyData.slice(0, 10).map((item) => (
                   <tr key={item.currency}>
                     <td>
-                      <img
-                        src={`https://flagsapi.com/${item.flag}/flat/24.png`}
-                        alt=""
-                        style={{ width: 20, height: 15, objectFit: "cover" }}
-                      />
+                      {currencyToFlag[item.currency] && (
+                        <span>{currencyToFlag[item.currency]}</span>
+                      )}
                     </td>
                     <td>{item.currency}</td>
                     <td>{item.rate.toFixed(4)}</td>

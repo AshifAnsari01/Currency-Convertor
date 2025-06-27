@@ -4,7 +4,7 @@ A feature-rich, modern currency converter built with React that supports real-ti
 
 ![Currency Converter Demo](https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![API](https://img.shields.io/badge/API-ExchangeRate.host-orange?style=for-the-badge)
+![API](https://img.shields.io/badge/API-ExchangeRate-API-orange?style=for-the-badge)
 
 ## ✨ Features
 
@@ -44,7 +44,7 @@ A feature-rich, modern currency converter built with React that supports real-ti
 - **Styling**: CSS3 with CSS Variables
 - **Charts**: Recharts
 - **Dropdowns**: React Select
-- **API**: ExchangeRate.host
+- **API**: ExchangeRate-API.com (via backend proxy)
 - **Deployment**: Vercel/Netlify ready
 
 ## 📦 Installation
@@ -94,7 +94,7 @@ npm run deploy
 ## 📱 Features in Detail
 
 ### 1. Real-time Currency Conversion
-- Fetches live rates from ExchangeRate.host API
+- Fetches live rates from ExchangeRate-API.com via a backend proxy
 - Supports 160+ world currencies
 - Instant conversion with real-time updates
 
@@ -150,17 +150,14 @@ Modify CSS variables in `src/index.css`:
 ```
 
 ### API Configuration
-The app uses ExchangeRate.host API. To use a different API:
-1. Update API endpoints in `App.js`
-2. Modify data parsing logic
-3. Update error handling
+The app uses ExchangeRate-API.com via a backend proxy. The proxy handles CORS and provides a consistent interface.
 
 ## 📊 API Endpoints Used
 
-- `https://api.exchangerate.host/symbols` - Get all currencies
-- `https://api.exchangerate.host/convert` - Convert currencies
-- `https://api.exchangerate.host/timeseries` - Historical data
-- `https://api.exchangerate.host/latest` - Latest rates
+- `/api/symbols` - Get all currencies (via proxy)
+- `/api/convert` - Convert currencies (via proxy)
+- `/api/timeseries` - Historical data (via proxy)
+- `/api/latest` - Latest rates (via proxy)
 
 ## 🤝 Contributing
 
@@ -176,7 +173,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- [ExchangeRate.host](https://exchangerate.host/) for providing free currency API
+- [ExchangeRate-API.com](https://exchangerate-api.com/) for providing free currency API
 - [Recharts](https://recharts.org/) for chart components
 - [React Select](https://react-select.com/) for enhanced dropdowns
 - [Flags API](https://flagsapi.com/) for country flags
@@ -186,6 +183,27 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you have any questions or need help:
 - Open an issue on GitHub
 - Contact: your-email@example.com
+
+## Backend Proxy Server Setup
+
+To avoid CORS and network issues with the ExchangeRate-API.com API, run the included backend proxy server:
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+2. **Start the proxy server:**
+   ```bash
+   node server.js
+   ```
+   The proxy will run on `http://localhost:5000` by default.
+
+3. **Update frontend API URLs:**
+   - The frontend already uses `/api/...` endpoints (e.g., `/api/latest`, `/api/timeseries`, `/api/symbols`).
+   - This routes requests through the proxy, bypassing CORS issues.
+
+4. **Deploying:**
+   - For production, deploy both the frontend and backend together, or use a service like Heroku, Render, or Vercel for the backend proxy.
 
 ---
 
