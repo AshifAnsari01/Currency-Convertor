@@ -357,32 +357,49 @@ function App() {
     setDarkMode(!darkMode);
   };
 
+  // Country calling codes for currencies without a flag
+  const currencyToCallingCode = {
+    XOF: "+226", // Burkina Faso (West African CFA franc)
+    XAF: "+237", // Cameroon (Central African CFA franc)
+    XPF: "+689", // French Polynesia
+    XCD: "+1-268", // East Caribbean dollar (Antigua & Barbuda)
+    XDR: "", // IMF Special Drawing Rights (no code)
+    XUA: "", // ADB Unit of Account (no code)
+    XBA: "", XBB: "", XBC: "", XBD: "", // European composite units (no code)
+    XTS: "", XSU: "", XAG: "", XAU: "", XPT: "", XPD: "", // Special units (no code)
+    // Add more as needed
+  };
+
   // Prepare options for react-select
-  const currencyOptions = currencies.map((cur) => {
+  const currencyOptions = currencies.map((cur) => ({ value: cur }));
+
+  // Custom label rendering for react-select
+  const getCurrencyOptionLabel = (option) => {
+    const cur = option.value;
     const flagUrl = currencyToFlag[cur];
-    return {
-      value: cur,
-      label: (
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          {flagUrl ? (
-            <img 
-              src={flagUrl} 
-              alt={`${cur} flag`} 
-              style={{ 
-                width: "20px", 
-                height: "15px", 
-                objectFit: "cover",
-                borderRadius: "2px"
-              }} 
-            />
-          ) : (
-            <span style={{ fontSize: "1.2em" }}>🌍</span>
-          )}
-          <span>{cur}</span>
-        </div>
-      ),
-    };
-  });
+    const callingCode = currencyToCallingCode[cur];
+    return (
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        {flagUrl ? (
+          <img 
+            src={flagUrl} 
+            alt={`${cur} flag`} 
+            style={{ 
+              width: "20px", 
+              height: "15px", 
+              objectFit: "cover",
+              borderRadius: "2px"
+            }} 
+          />
+        ) : callingCode ? (
+          <span style={{ fontWeight: "bold", fontSize: "1.1em", color: "#888" }}>{callingCode}</span>
+        ) : (
+          <span style={{ fontWeight: "bold", fontSize: "1.1em", color: "#888" }}>{cur}</span>
+        )}
+        <span>{cur}</span>
+      </div>
+    );
+  };
 
   return (
     <div className={`container ${darkMode ? "dark" : ""}`}>
@@ -416,6 +433,7 @@ function App() {
             isSearchable
             placeholder="Select currency"
             className="currency-select"
+            getOptionLabel={getCurrencyOptionLabel}
           />
         </div>
 
@@ -432,6 +450,7 @@ function App() {
             isSearchable
             placeholder="Select currency"
             className="currency-select"
+            getOptionLabel={getCurrencyOptionLabel}
           />
         </div>
       </div>
@@ -507,8 +526,10 @@ function App() {
                             borderRadius: "2px"
                           }} 
                         />
+                      ) : currencyToCallingCode[item.currency] ? (
+                        <span style={{ fontWeight: "bold", fontSize: "1.1em", color: "#888" }}>{currencyToCallingCode[item.currency]}</span>
                       ) : (
-                        <span style={{ fontSize: "1.2em" }}>🌍</span>
+                        <span style={{ fontWeight: "bold", fontSize: "1.1em", color: "#888" }}>{item.currency}</span>
                       )}
                     </td>
                     <td>{item.currency}</td>
