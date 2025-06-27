@@ -143,10 +143,25 @@ function App() {
     testAPI();
   }, []);
 
-  // Flag mapping for dropdowns
+  // Flag mapping for dropdowns - expanded comprehensive list
   const currencyToFlag = {
-    USD: "🇺🇸", INR: "🇮🇳", EUR: "🇪🇺", GBP: "🇬🇧", JPY: "🇯🇵"
-    // Add more as needed
+    // Major currencies
+    USD: "🇺🇸", EUR: "🇪🇺", GBP: "🇬🇧", JPY: "🇯🇵", AUD: "🇦🇺", CAD: "🇨🇦", CHF: "🇨🇭", CNY: "🇨🇳", INR: "🇮🇳", BRL: "🇧🇷",
+    MXN: "🇲🇽", SGD: "🇸🇬", HKD: "🇭🇰", KRW: "🇰🇷", THB: "🇹🇭", NZD: "🇳🇿", SEK: "🇸🇪", NOK: "🇳🇴", DKK: "🇩🇰", PLN: "🇵🇱",
+    CZK: "🇨🇿", HUF: "🇭🇺", RUB: "🇷🇺", TRY: "🇹🇷", ZAR: "🇿🇦", EGP: "🇪🇬", MAD: "🇲🇦", TND: "🇹🇳", NGN: "🇳🇬", GHS: "🇬🇭",
+    KES: "🇰🇪", TZS: "🇹🇿", UGX: "🇺🇬", ETB: "🇪🇹", ILS: "🇮🇱", AED: "🇦🇪", SAR: "🇸🇦", QAR: "🇶🇦", KWD: "🇰🇼", BHD: "🇧🇭",
+    OMR: "🇴🇲", JOD: "🇯🇴", LBP: "🇱🇧", SYP: "🇸🇾", IQD: "🇮🇶", IRR: "🇮🇷", PKR: "🇵🇰", BDT: "🇧🇩", LKR: "🇱🇰", NPR: "🇳🇵",
+    BTN: "🇧🇹", MVR: "🇲🇻", AFN: "🇦🇫", KZT: "🇰🇿", UZS: "🇺🇿", KGS: "🇰🇬", TJS: "🇹🇯", TMT: "🇹🇲", ARS: "🇦🇷", CLP: "🇨🇱",
+    COP: "🇨🇴", PEN: "🇵🇪", UYU: "🇺🇾", VEF: "🇻🇪", JMD: "🇯🇲", TTD: "🇹🇹", BBD: "🇧🇧", BZD: "🇧🇿", GYD: "🇬🇾", SRD: "🇸🇷",
+    HTG: "🇭🇹", DOP: "🇩🇴", CUC: "🇨🇺", CUP: "🇨🇺", FJD: "🇫🇯", PGK: "🇵🇬", SBD: "🇸🇧", VUV: "🇻🇺", WST: "🇼🇸", TOP: "🇹🇴",
+    XPF: "🇵🇫", NIO: "🇳🇮", HNL: "🇭🇳", GTQ: "🇬🇹", SVC: "🇸🇻", CRC: "🇨🇷", PAB: "🇵🇦", DZD: "🇩🇿", LYD: "🇱🇾", SDG: "🇸🇩",
+    XOF: "🇧🇫", XAF: "🇨🇲", GMD: "🇬🇲", SLL: "🇸🇱", LRD: "🇱🇷", GNF: "🇬🇳", BIF: "🇧🇮", RWF: "🇷🇼", SOS: "🇸🇴", DJF: "🇩🇯",
+    KMF: "🇰🇲", MUR: "🇲🇺", SCR: "🇸🇨", MGA: "🇲🇬", BWP: "🇧🇼", NAD: "🇳🇦", LSL: "🇱🇸", SZL: "🇸🇿", ZMW: "🇿🇲", MWK: "🇲🇼",
+    MZN: "🇲🇿", ZWL: "🇿🇼", MMK: "🇲🇲", LAK: "🇱🇦", KHR: "🇰🇭", MOP: "🇲🇴", MYR: "🇲🇾", IDR: "🇮🇩", PHP: "🇵🇭", VND: "🇻🇳",
+    TWD: "🇹🇼", HUF: "🇭🇺", RON: "🇷🇴", BGN: "🇧🇬", HRK: "🇭🇷", RSD: "🇷🇸", ALL: "🇦🇱", MKD: "🇲🇰", MDL: "🇲🇩", GEL: "🇬🇪",
+    AMD: "🇦🇲", AZN: "🇦🇿", BYN: "🇧🇾", KGS: "🇰🇬", KZT: "🇰🇿", TJS: "🇹🇯", TMT: "🇹🇲", UZS: "🇺🇿", MNT: "🇲🇳", KRW: "🇰🇷",
+    // Precious metals
+    XAU: "🥇", XAG: "🥈", XPT: "🥉", XPD: "🔶"
   };
 
   // Fetch currency symbols with fallback
@@ -157,12 +172,24 @@ function App() {
         if (data && data.rates) {
           setCurrencies(Object.keys(data.rates));
         } else {
-          setCurrencies(["USD", "INR", "EUR", "GBP", "JPY"]);
+          setCurrencies([
+            "USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY", "INR", "BRL",
+            "MXN", "SGD", "HKD", "KRW", "THB", "NZD", "SEK", "NOK", "DKK", "PLN",
+            "CZK", "HUF", "RUB", "TRY", "ZAR", "EGP", "MAD", "TND", "NGN", "GHS",
+            "KES", "TZS", "UGX", "ETB", "ILS", "AED", "SAR", "QAR", "KWD", "BHD",
+            "PKR", "BDT", "LKR", "NPR", "ARS", "CLP", "COP", "PEN", "UYU", "JMD"
+          ]);
         }
       })
       .catch(() => {
-        // Fallback: minimal but functional list
-        setCurrencies(["USD", "INR", "EUR", "GBP", "JPY"]);
+        // Fallback: expanded list of popular currencies
+        setCurrencies([
+          "USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY", "INR", "BRL",
+          "MXN", "SGD", "HKD", "KRW", "THB", "NZD", "SEK", "NOK", "DKK", "PLN",
+          "CZK", "HUF", "RUB", "TRY", "ZAR", "EGP", "MAD", "TND", "NGN", "GHS",
+          "KES", "TZS", "UGX", "ETB", "ILS", "AED", "SAR", "QAR", "KWD", "BHD",
+          "PKR", "BDT", "LKR", "NPR", "ARS", "CLP", "COP", "PEN", "UYU", "JMD"
+        ]);
       });
   }, []);
 
@@ -308,9 +335,7 @@ function App() {
     value: cur,
     label: (
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        {currencyToFlag[cur] && (
-          <span>{currencyToFlag[cur]}</span>
-        )}
+        <span>{currencyToFlag[cur] || "🌍"}</span>
         <span>{cur}</span>
       </div>
     ),
@@ -393,7 +418,7 @@ function App() {
 
       {chartData.length > 0 && (
         <div className="chart-section">
-          <h4>📈 Last 7 Days Rate ({fromCurrency} → {toCurrency})</h4>
+          <h4>📈 Current Rate ({fromCurrency} → {toCurrency})</h4>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -428,9 +453,7 @@ function App() {
                 {multiCurrencyData.slice(0, 10).map((item) => (
                   <tr key={item.currency}>
                     <td>
-                      {currencyToFlag[item.currency] && (
-                        <span>{currencyToFlag[item.currency]}</span>
-                      )}
+                      <span>{currencyToFlag[item.currency] || "🌍"}</span>
                     </td>
                     <td>{item.currency}</td>
                     <td>{item.rate.toFixed(4)}</td>
@@ -449,4 +472,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
