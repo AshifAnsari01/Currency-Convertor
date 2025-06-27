@@ -157,9 +157,9 @@ function App() {
     XPF: "🇵🇫", NIO: "🇳🇮", HNL: "🇭🇳", GTQ: "🇬🇹", SVC: "🇸🇻", CRC: "🇨🇷", PAB: "🇵🇦", DZD: "🇩🇿", LYD: "🇱🇾", SDG: "🇸🇩",
     XOF: "🇧🇫", XAF: "🇨🇲", GMD: "🇬🇲", SLL: "🇸🇱", LRD: "🇱🇷", GNF: "🇬🇳", BIF: "🇧🇮", RWF: "🇷🇼", SOS: "🇸🇴", DJF: "🇩🇯",
     KMF: "🇰🇲", MUR: "🇲🇺", SCR: "🇸🇨", MGA: "🇲🇬", BWP: "🇧🇼", NAD: "🇳🇦", LSL: "🇱🇸", SZL: "🇸🇿", ZMW: "🇿🇲", MWK: "🇲🇼",
-    MZN: "🇲🇿", ZWL: "🇿🇼", MMK: "🇲🇲", LAK: "🇱🇦", KHR: "🇰🇭", MOP: "🇲🇴", MYR: "🇲🇾", IDR: "🇮🇩", PHP: "🇵🇭", VND: "🇻🇳",
-    TWD: "🇹🇼", HUF: "🇭🇺", RON: "🇷🇴", BGN: "🇧🇬", HRK: "🇭🇷", RSD: "🇷🇸", ALL: "🇦🇱", MKD: "🇲🇰", MDL: "🇲🇩", GEL: "🇬🇪",
-    AMD: "🇦🇲", AZN: "🇦🇿", BYN: "🇧🇾", KGS: "🇰🇬", KZT: "🇰🇿", TJS: "🇹🇯", TMT: "🇹🇲", UZS: "🇺🇿", MNT: "🇲🇳", KRW: "🇰🇷",
+    MZN: "🇲🇿", ZWL: "🇿🇼", MMK: "🇲🇲", LAK: "🇱🇦", KHR: "🇰🇭", MOP: "🇲🇴", MYR: "🇲🇾", IDR: "🇮🇩", PHP: "🇵🇭", VND: "🇻��",
+    TWD: "🇹🇼", RON: "🇷🇴", BGN: "🇧🇬", HRK: "🇭🇷", RSD: "🇷🇸", ALL: "🇦🇱", MKD: "🇲🇰", MDL: "🇲🇩", GEL: "🇬🇪",
+    AMD: "🇦🇲", AZN: "🇦🇿", BYN: "🇧🇾", MNT: "🇲🇳",
     // Precious metals
     XAU: "🥇", XAG: "🥈", XPT: "🥉", XPD: "🔶"
   };
